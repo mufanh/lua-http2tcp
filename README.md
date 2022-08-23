@@ -248,7 +248,7 @@ Transfer/sec:     25.48MB
 
 ## 8. demo下载
 
-为了简化该工具的使用，编写了demo工程，详细如下所示。
+为了简化该工具的使用，编写了demo工程([下载地址](https://github.com/mufanh/lua-http2tcp/blob/main/assets/http2tcp-test.tar))，详细如下所示。
 
 ```txt
 ./
