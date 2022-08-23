@@ -24,7 +24,7 @@ end
 
 -- TCP message to HTTP message
 function _M.recieve_tcp_msg(sock)
-    local len, err = sock:receiveany(8)
+    local len, err = sock:receive(8)
     if not len then
         return false, 500, "recieve msg err, " .. err
     end
@@ -34,7 +34,7 @@ function _M.recieve_tcp_msg(sock)
         return false, 500, "recieve msg format err, " .. err
     end
 
-    local res_data, err = sock:receiveany(len)
+    local res_data, err = sock:receive(len)
     if not res_data then
         return false, 500, "recieve msg err, " .. err
     end
