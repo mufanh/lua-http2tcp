@@ -131,7 +131,7 @@ core.response.set_cookie(cookie_record)
 
 使用该工具，设置HTTP报文，BODY存放JSON字符串，然后转换为TCP报文，为了提升性能，工具处不解析JSON，仅当字符串处理，计算其长度后，拼装前面长度域。
 
-自定义lua插件编写方式详细见[例子](example/codec/example-codec)。
+自定义lua插件编写方式详细见[例子](https://github.com/mufanh/lua-http2tcp/blob/main/example/codec/example-codec.lua)。
 
 - 1 构造TCP请求报文
 
@@ -188,40 +188,9 @@ end
 
 PS：要使用该工具，需要对openresty有一定熟悉，特别是cosocket的原理和使用方式，网上有大量资料，cosocket可以实现各种第三方组件的适配，非常强大，感兴趣的读者可以自行去研究学习。
 
-## 6. 工具依赖
+## 6. 工具使用方式
 
-工具使用lua开发，并且使用luarocks管理依赖，使用时候需要对luarocks有点了解，工具本身依赖几个lua工具包，如下。
-
-```txt
-"api7-lua-tinyyaml = 0.4.2"
-"lua-resty-ngxvar = 0.5.2"
-"luafilesystem = 1.7.0-2"
-```
-
-## 7. 工具使用方式
-
-- 1 建议工程结构
-
-```txt
-[netpay@netpay-uat-3 http2tcp]$ tree ./
-./
-├── config
-│   ├── mime.types
-│   ├── nginx.conf
-│   └── vhost
-│       └── http2tcp.conf
-├── logs
-│   ├── error.log
-│   └── nginx.pid
-├── start.sh
-└── stop.sh
-```
-
-PS:详细内容可以见附件，本文档仅提供配置方式，并且lua的依赖位置和你安装目录的位置都可能和我有不同，所以根据自己情况合理配置。
-
-- 2 配置工具转发
-
-```txt
+```nginx
 location /example-codec {
    	content_by_lua_block {
             local proxy = require("http2tcp.proxy")
@@ -236,14 +205,16 @@ location /example-codec {
 
 PS：另外需要注意：配置的连接池是worker级别，比如nginx启动4个worker，配置pool_size=300，那么最大其实是有4*300=1200个连接。
 
-## 8. 协议转换工具性能
+## 7. 协议转换工具性能
 
 本次性能只是协议转换工具+挡板的工具，实际性能应该是高于该性能的，压测过程采用openresty的线性相关性绑定到4C上面执行，4C的CPU利用率大概再80%左右，TPS压测下来可以支持10.8W+，实际性能应该还会高一点。
 
 其中wrk利用线性相关性绑定10，11，12，13核，转换工具占用0，1，2，3核。工具是无状态的，所以理论上来说机器资源足够的情况下，可以达到单机百万TPS。（当然，还可能收到其他资源的影响，特别是带宽等因素）
 
+PS:下面使用的wrk是本人fork wrk改造过后，支持线程亲和性特性的wrk。
+
 ```txt
-[netpay@netpay-uat-3 route-performance-http2tcp]$  wrk -t4 -c40 -d120s -a10,11,12,13 --script=/app/netpay/request.lua --latency http://127.0.0.1:60086/example-codec
+[netpay@netpay-uat-3 performance-http2tcp-demo]$  wrk -t4 -c40 -d120s -a10,11,12,13 --script=/app/netpay/request.lua --latency http://127.0.0.1:60086/example-codec
 this thread 7f09f2414700 is running in processor 10
 this thread 7f09f2414700 is running in processor 11
 this thread 7f09f2414700 is running in processor 12
