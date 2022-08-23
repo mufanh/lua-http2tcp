@@ -20,6 +20,12 @@ tcp服务代理，支持将http报文转为特定格式的tcp报文转发。
 
 - 3 响应的报文格式也是自己定义的，在自己的解码器逻辑里面填充HTTP报文响应，本工具也提供了各种方式，支持将TCP关键域解析后的信息填充到HTTP响应的多个位置。
 
+- 4 工具依赖安装。
+
+```txt
+luarocks install http2tcp
+```
+
 ## 3. HTTP报文提取工具
 
 扩展自己的TCP协议的编解码逻辑时候，需要引入该工具的core工具包，方便各种操作，引入方式：
@@ -197,7 +203,7 @@ PS：要使用该工具，需要对openresty有一定熟悉，特别是cosocket�
 - 1 建议工程结构
 
 ```txt
-[netpay@netpay-uat-3 route-performance-http2tcp]$ tree ./
+[netpay@netpay-uat-3 http2tcp]$ tree ./
 ./
 ├── config
 │   ├── mime.types
@@ -218,7 +224,7 @@ PS:详细内容可以见附件，本文档仅提供配置方式，并且lua的�
 ```txt
 location /example-codec {
    	content_by_lua_block {
-            local proxy = require("route-performance-http2tcp-tool.proxy")
+            local proxy = require("http2tcp.proxy")
             local codec = require("example.codec.example-codec")
             // 具体要转发的IP、端口、编码解码器（参考上面文档介绍编写）、连接池大小和连接池保活时间、连接超时时间
             // 第4个参数可以不填，就用默认值（pool_size=100,pool_keepalive=2000,connect_timeout=1000,write_timeout=1000,read_timeout=1000)，你想换哪个配置就填哪个配置也可以，不用都配置
