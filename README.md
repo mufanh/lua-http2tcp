@@ -12,7 +12,7 @@ tcp服务代理，支持将http报文转为特定格式的tcp报文转发。
 
 ## 2. 该工具的工作流程
 
-![](./assets/工具工作流程.png)
+![工具工作流程](https://github.com/mufanh/http2tcp/blob/main/assets/工具工作流程.png)
 
 - 1 HTTP报文格式你可以根据实际需要自己定义，本工具提供了很多方式可以从HTTP报文中提取关键域；
 
@@ -127,7 +127,7 @@ core.response.set_cookie(cookie_record)
 
 该处使用公司使用的某种tcp报文协议进行说明，该TCP报文的格式如下：
 
-![](assets/example-codec.png)
+![示例报文格式](https://github.com/mufanh/http2tcp/blob/main/assets/example-codec.png)
 
 使用该工具，设置HTTP报文，BODY存放JSON字符串，然后转换为TCP报文，为了提升性能，工具处不解析JSON，仅当字符串处理，计算其长度后，拼装前面长度域。
 
