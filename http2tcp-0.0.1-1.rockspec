@@ -1,16 +1,16 @@
-package = "http2tcp"
+package = "lua-http2tcp"
 version = "0.0.1-1"
 supported_platforms = {"linux", "macosx"}
 
 source = {
-    url = "https://github.com/mufanh/http2tcp.git",
+    url = "https://github.com/mufanh/lua-http2tcp.git",
     branch = "main",
     tag = "v0.0.1-1",
 }
 
 description = {
     summary = "tcp服务代理，支持将http报文转为特定格式的tcp报文转发.",
-    homepage = "https://github.com/mufanh/http2tcp",
+    homepage = "https://github.com/mufanh/lua-http2tcp",
     license = "Apache License 2.0",
     maintainer = "mufanh <mufan.huang@qq.com>"
 }

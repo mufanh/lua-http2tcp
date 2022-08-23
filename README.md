@@ -1,4 +1,4 @@
-# http2tcp
+# lua-http2tcp
 
 tcp服务代理，支持将http报文转为特定格式的tcp报文转发。
 
@@ -23,7 +23,7 @@ tcp服务代理，支持将http报文转为特定格式的tcp报文转发。
 - 4 工具依赖安装。
 
 ```txt
-luarocks install http2tcp
+luarocks install lua-http2tcp
 ```
 
 ## 3. HTTP报文提取工具
