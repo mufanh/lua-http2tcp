@@ -1,11 +1,10 @@
 package = "lua-http2tcp"
-version = "0.0.1-2"
+version = "0.0.1-3"
 supported_platforms = {"linux", "macosx"}
 
 source = {
     url = "git://github.com/mufanh/lua-http2tcp",
-    branch = "main",
-    tag = "v0.0.1-2",
+    tag = "v0.0.1-3",
 }
 
 description = {
