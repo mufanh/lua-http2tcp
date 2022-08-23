@@ -4,7 +4,7 @@ supported_platforms = {"linux", "macosx"}
 
 source = {
     url = "https://github.com/mufanh/http2tcp.git",
-    branch = "master",
+    branch = "main",
 }
 
 description = {
