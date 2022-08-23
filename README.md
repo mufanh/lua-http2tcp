@@ -245,3 +245,30 @@ this thread 7f09f0c11700 is running in processor 13
 Requests/sec: 108159.94
 Transfer/sec:     25.48MB
 ```
+
+## 8. demo下载
+
+为了简化该工具的使用，编写了demo工程，详细如下所示。
+
+```txt
+./
+├── conf
+│   ├── mime.types
+│   ├── nginx.conf
+│   └── vhost
+│       └── http2tcp.conf
+└── example
+    └── codec
+        └── example-codec.lua
+
+```
+
+其中：
+
+1）nginx.conf包含方便测试的一个tcp服务挡板，通过stream lua写的一个简单的回声挡板；
+
+2）http2tcp.conf具体包含http转tcp的配置方式；
+
+3）http转tcp需要自定义的协议lua插件编写。
+
+运行该demo建议使用`openresty -p 该工具目录`运行，并且需要您已经安装好了openresty、luarocks，并且需要安装http2tcp的依赖。（依赖安装方式`luarocks install lua-http2tcp`)
