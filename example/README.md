@@ -6,4 +6,4 @@
 
 http2tcp范例编解码器,格式如下图所示
 
-![](https://github.com/mufanh/http2tcp/blob/main/assets/example-codec.png)
+![](../assets/example-codec.png)
