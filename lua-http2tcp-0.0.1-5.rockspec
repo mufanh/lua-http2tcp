@@ -1,10 +1,10 @@
 package = "lua-http2tcp"
-version = "0.0.1-4"
+version = "0.0.1-5"
 supported_platforms = {"linux", "macosx"}
 
 source = {
     url = "git://github.com/mufanh/lua-http2tcp",
-    tag = "v0.0.1-4",
+    tag = "v0.0.1-5",
 }
 
 description = {
@@ -21,7 +21,7 @@ dependencies = {
 }
 
 build = {
-    type = "make",
+    type = "builtin",
     modules = {
         ["http2tcp.pkg.ctx"] = "http2tcp/pkg/ctx.lua",
         ["http2tcp.pkg.io"] = "http2tcp/pkg/io.lua",
