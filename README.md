@@ -192,7 +192,7 @@ PS：要使用该工具，需要对openresty有一定熟悉，特别是cosocket�
 
 ```nginx
 location /example-codec {
-   	content_by_lua_block {
+    content_by_lua_block {
             local proxy = require("http2tcp.proxy")
             local codec = require("example.codec.example-codec")
             // 具体要转发的IP、端口、编码解码器（参考上面文档介绍编写）、连接池大小和连接池保活时间、连接超时时间
