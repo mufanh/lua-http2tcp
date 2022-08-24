@@ -198,7 +198,6 @@ location /example-codec {
             // 具体要转发的IP、端口、编码解码器（参考上面文档介绍编写）、连接池大小和连接池保活时间、连接超时时间
             // 第4个参数可以不填，就用默认值（pool_size=100,pool_keepalive=2000,connect_timeout=1000,write_timeout=1000,read_timeout=1000)，你想换哪个配置就填哪个配置也可以，不用都配置
             proxy.process("127.0.0.1", 10089, codec, { pool_size = 300, pool_keepalive = 200000, read_timeout = 4000 })
-        }
     }
 }
 ```
